@@ -177,3 +177,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Scroll Color Change for Sections
+const sections = [
+  { selector: '.about-offset', id: 'about-offset' },
+  { selector: '.vision-mission-section', id: 'vision-mission' },
+  { selector: '.why-choose', id: 'why-choose' },
+  { selector: '.machine-section', id: 'machine-service' },
+  { selector: '.services-offset', id: 'services-project' },
+  { selector: '.faq-section', id: 'faq' }
+];
+
+window.addEventListener('scroll', () => {
+  sections.forEach(section => {
+    const element = document.querySelector(section.selector);
+    if (!element) return;
+
+    const rect = element.getBoundingClientRect();
+    const isInView = rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5;
+
+    if (isInView) {
+      element.classList.add('text-dark');
+    } else {
+      element.classList.remove('text-dark');
+    }
+  });
+}, { passive: true });
